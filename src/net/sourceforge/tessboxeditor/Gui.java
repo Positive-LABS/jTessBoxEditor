@@ -573,8 +573,9 @@ public class Gui extends javax.swing.JFrame {
         });
         jPanel4.add(jButtonDelete);
 
-        jButtonDeleteLine.setText(bundle.getString("jButtonDelete.Text")); // NOI18N
-        jButtonDeleteLine.setToolTipText(bundle.getString("jButtonDelete.ToolTipText")); // NOI18N
+        jButtonDeleteLine.setMnemonic(KeyEvent.VK_BACK_QUOTE);
+        jButtonDeleteLine.setText("Delete Line");
+        jButtonDeleteLine.setToolTipText("Delete Line");
         jButtonDeleteLine.setFocusable(false);
         jButtonDeleteLine.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonDeleteLine.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2099,7 +2100,7 @@ public class Gui extends javax.swing.JFrame {
         jMenuItem2ActionPerformed(evt);
     }
     private void jButtonDeleteLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteLineActionPerformed
-       
+        DeleteLineActionPerformed(evt);
     }//GEN-LAST:event_jButtonDeleteLineActionPerformed
 
     private void jButtonDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonDeleteMouseClicked
