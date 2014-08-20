@@ -19,4 +19,4 @@ Optimize [jTessBoxEditor](http://sourceforge.net/projects/vietocr/files/jTessBox
   - Alt+,  H++
 
 + Delete boxes in a line
-  + Shortcut ``` for delete one line boxes
+  + Shortcut ` ` ` for delete one line boxes
