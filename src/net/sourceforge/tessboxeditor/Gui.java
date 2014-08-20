@@ -261,6 +261,7 @@ public class Gui extends javax.swing.JFrame {
         jLabelPageNbr = new javax.swing.JLabel();
         jButtonPrevPage = new javax.swing.JButton();
         jButtonNextPage = new javax.swing.JButton();
+        jTextJumpPage = new javax.swing.JTextField();
         jPanelTIFFBox = new javax.swing.JPanel();
         jToolBarGenerator = new javax.swing.JToolBar();
         jPanel3 = new javax.swing.JPanel();
@@ -932,6 +933,27 @@ public class Gui extends javax.swing.JFrame {
             }
         });
         jPanelStatus.add(jButtonNextPage);
+
+        jTextJumpPage.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
+        jTextJumpPage.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextJumpPage.setText("1");
+        jTextJumpPage.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        jTextJumpPage.setMaximumSize(new java.awt.Dimension(50, 30));
+        jTextJumpPage.setMinimumSize(new java.awt.Dimension(30, 30));
+        jTextJumpPage.setName(""); // NOI18N
+        jTextJumpPage.setPreferredSize(new java.awt.Dimension(50, 30));
+        jTextJumpPage.setRequestFocusEnabled(true);
+        jTextJumpPage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextJumpPageMouseClicked(evt);
+            }
+        });
+        jTextJumpPage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextJumpPageActionPerformed(evt);
+            }
+        });
+        jPanelStatus.add(jTextJumpPage);
 
         jPanelEditor.add(jPanelStatus, java.awt.BorderLayout.SOUTH);
 
@@ -1681,6 +1703,7 @@ public class Gui extends javax.swing.JFrame {
         }
         this.jLabelImage.repaint();
         this.jLabelPageNbr.setText(String.format("Page: %d of %d", imageIndex + 1, imageList.size()));
+        this.jTextJumpPage.setText(String.format("%d",imageIndex + 1));
         setButton();
         tableSelectAction = true;
         resetReadout();
@@ -2111,6 +2134,24 @@ public class Gui extends javax.swing.JFrame {
          DeleteLineActionPerformed(evt);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jTextJumpPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextJumpPageActionPerformed
+        if (imageList != null && imageIndex < imageList.size() - 1) {
+            String str = this.jTextJumpPage.getText();
+            short pagenum = Short.parseShort(str);
+            pagenum = (short) (pagenum - 1 >= 0 ? (pagenum - 1): 0);
+            if (pagenum <= imageList.size() - 1) {
+                imageIndex=pagenum;
+                loadImage();
+                loadTable();
+            }
+        }       
+    }//GEN-LAST:event_jTextJumpPageActionPerformed
+
+    private void jTextJumpPageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextJumpPageMouseClicked
+        this.jTextJumpPage.selectAll();
+        this.jTextJumpPage.requestFocus();
+    }//GEN-LAST:event_jTextJumpPageMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2253,6 +2294,7 @@ public class Gui extends javax.swing.JFrame {
     protected javax.swing.JTextField jTextFieldLang;
     protected javax.swing.JTextField jTextFieldPrefix;
     protected javax.swing.JTextField jTextFieldTessDir;
+    private javax.swing.JTextField jTextJumpPage;
     private javax.swing.JToolBar jToolBarEditor;
     private javax.swing.JToolBar jToolBarGenerator;
     private javax.swing.JToolBar jToolBarTrainer;
