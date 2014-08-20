@@ -5,7 +5,7 @@ Optimize [jTessBoxEditor](http://sourceforge.net/projects/vietocr/files/jTessBox
 
 ## Added
 
-+ ShortCuts
++ Shortcuts
   - Alt+S Prev Box
   - Alt+D Next Box
   - Alt+F Modify Character
@@ -19,3 +19,4 @@ Optimize [jTessBoxEditor](http://sourceforge.net/projects/vietocr/files/jTessBox
   - Alt+,  H++
 
 + Delete boxes in a line
+  + Shortcut `\`` for delete one line boxes
