@@ -727,6 +727,30 @@ public class Gui extends javax.swing.JFrame {
         });
         jTable.setFillsViewportHeight(true);
         jTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        
+        //edit with 'e' key
+        InputMap im = this.getRootPane().getInputMap(
+                JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        ActionMap am = this.getRootPane().getActionMap();
+        //add custom action
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK), "editrow");
+        am.put("editrow", new AbstractAction() {
+        	@Override
+            public void actionPerformed(ActionEvent e) {
+                
+        		int selectedIndex = jTable.getSelectedRow();
+                if (selectedIndex != -1) {
+                	if (jTable.getSelectedRows().length == 1) {
+                		jTable.editCellAt(selectedIndex, 0);
+                		JTextField editor = (JTextField) jTable.getEditorComponent();
+                		editor.selectAll();
+                		editor.requestFocusInWindow();
+//                		JOptionPane.showMessageDialog(jTable, "test");
+                	}
+                }
+            }
+        });
+        
         jScrollPaneCoord.setViewportView(jTable);
         tableModel = (DefaultTableModel) this.jTable.getModel();
         tableModel.addTableModelListener(new TableModelListener() {
@@ -771,6 +795,7 @@ public class Gui extends javax.swing.JFrame {
                             // update Character field
                             jTextFieldCharacter.setText((String) tableModel.getValueAt(selectedIndex, 0));
                             jTextFieldChar.setText(jTextFieldCharacter.getText());
+
                             jTextFieldCodepointValue.setText(Utilities.toHex(jTextFieldCharacter.getText()));
                             // update subimage label
                             Icon icon = jLabelImage.getIcon();
